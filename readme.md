@@ -120,11 +120,51 @@ darioc@cod-fac-devops:~/api_python/k8s$ curl localhost:8090/tareas
 ]
  ```
 
-**4- Aplicar el file 003-ingress.yaml**
+**4- Aplicar el file 03-ingress.yaml**
 ```
 kubectl apply 03-ingress.yaml -n utn-k8s-desafio
 ```
 
+
+**Verificaciones**
+* Verificar que esta todo corriendo en el namespace
+```
+darioc@cod-fac-devops:~$ kubectl get all -n utn-k8s-desafio
+NAME                                      READY   STATUS    RESTARTS   AGE
+pod/app-desafio-utn-k8s-7f7dd897f-btm6b   1/1     Running   0          59m
+pod/app-desafio-utn-k8s-7f7dd897f-gv8hf   1/1     Running   0          59m
+pod/app-desafio-utn-k8s-7f7dd897f-rsdpv   1/1     Running   0          59m
+
+NAME                          TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)    AGE
+service/app-desafio-utn-k8s   ClusterIP   10.43.233.117   <none>        5000/TCP   59m
+
+NAME                                  READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/app-desafio-utn-k8s   3/3     3            3           59m
+
+NAME                                            DESIRED   CURRENT   READY   AGE
+replicaset.apps/app-desafio-utn-k8s-7f7dd897f   3         3         3       59m
+```
+
+* Verificar ingress
+```
+darioc@cod-fac-devops:~$ kubectl get ingress -n utn-k8s-desafio
+NAME                        CLASS    HOSTS                   ADDRESS         PORTS     AGE
+utn-k8s.chicho.com.ar       <none>   utn-k8s.chicho.com.ar   192.168.52.31   80, 443   108s
+cm-acme-http-solver-szk9v   <none>   utn-k8s.chicho.com.ar   192.168.52.31   80        106s
+```
+
+* Verificar certificado TLS
+```
+darioc@cod-fac-devops:~$ kubectl get certificate -n utn-k8s-desafio 
+NAME                  READY   SECRET                AGE
+letsencrypt-utn-k8s   False   letsencrypt-utn-k8s   34s
+```
+
+
+**Acceso a la apliacion**
 * Para los dns se utilizo Cloudflare
+* Se utlizo nginx-ingress-controller para exponer la app y cert-manager para los certs TLS
 
 URL: https://utn-k8s.chicho.com.ar/tareas
+
+
