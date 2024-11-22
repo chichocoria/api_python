@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-desafio-utn-k8s
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: app-desafio-utn-k8s
+  template:
+    metadata:
+      labels:
+        app: app-desafio-utn-k8s
+    spec:
+      containers:
+      - image: chichocoria/docker-utn:1.0.0
+        name: app-desafio-utn-k8s
+        ports:
+        - containerPort: 5000
