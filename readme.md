@@ -168,3 +168,13 @@ letsencrypt-utn-k8s   False   letsencrypt-utn-k8s   34s
 URL: https://utn-k8s.chicho.com.ar/tareas
 
 
+**Extra: Monitoreo y Observabilidad**
+Se instalo kube-prom-stack y loki-stack con helm. Con lo cual podemos visualizar con grafana las metricas de salud del Cluster que nos provee prometheus. Y tambien Loki para los logs de las applicaciones que corren dentro del Cluster.
+Para almacenamiento persistente de las configuraciones de grafana, metricas y logs se utilizo Longhorn que es una herramienta de almacenamiento distribuido y un proyecto de la CNCF.
+
+URL: https://grafana.chicho.com.ar/
+
+Se agrego un dashboard Node Exporter llamado con el que podemos ver visualizar CPU, memoria, E/S de disco, red, temperatura y otras métricas de monitoreo.
+
+URL: https://grafana.chicho.com.ar/d/W5KDrdKnz/6e86b6fe-1eab-5293-a881-2592e2eb6445?orgId=1&from=1732884630455&to=1732888230455
+
