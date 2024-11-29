@@ -169,6 +169,7 @@ URL: https://utn-k8s.chicho.com.ar/tareas
 
 
 **Extra: Monitoreo y Observabilidad**
+
 Se instalo kube-prom-stack y loki-stack con helm. Con lo cual podemos visualizar con grafana las metricas de salud del Cluster que nos provee prometheus. Y tambien Loki para los logs de las applicaciones que corren dentro del Cluster.
 Para almacenamiento persistente de las configuraciones de grafana, metricas y logs se utilizo Longhorn que es una herramienta de almacenamiento distribuido y un proyecto de la CNCF.
 
